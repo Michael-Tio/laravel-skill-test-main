@@ -24,7 +24,7 @@ class PostUpdateRequest extends FormRequest
         return [
             'title'         => ['sometimes', 'required', 'string', 'max:255'],
             'content'       => ['sometimes', 'required', 'string'],
-            'is_draft'      => ['sometimes', 'required', 'boolean'],
+            'is_draft'      => ['sometimes', 'boolean'],
             'published_at'  => ['sometimes', 'nullable', 'date', 'after_or_equal:today'],
         ];
     }

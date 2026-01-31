@@ -10,12 +10,14 @@ Route::get('/', function () {
 
 Route::resource('posts', PostController::class)->only(['index', 'show']);
 
+Route::middleware('auth')->group(function () {
+    Route::resource('posts', PostController::class)->except(['index', 'show']);
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
-
-    Route::resource('posts', PostController::class)->except(['index', 'show']);
 });
 
 require __DIR__.'/settings.php';

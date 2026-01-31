@@ -43,9 +43,10 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        if ($validated['is_draft'] === true) {
+        if (($validated['is_draft'] ?? true) === true) {
             $validated['published_at'] = null;
         }
+
 
         $post = Post::create(array_merge($validated, [
             'user_id' => $request->user()->id,
@@ -123,6 +124,6 @@ class PostController extends Controller
         return response()->json([
             'code'      => 200,
             'message'   => 'Post deleted successfully.'
-        ]);
+        ], 200);
     }
 }
