@@ -67,7 +67,7 @@ class PostController extends Controller
             abort(404);
         }
 
-        return new PostResource($post);
+        return new PostResource($post->load('user'));
     }
 
     /**
@@ -97,7 +97,7 @@ class PostController extends Controller
             }
         }
 
-        if ($post->is_draft === false) {
+        if ($post->is_draft === false && isset($validated['is_draft'])) {
             unset($validated['is_draft']);
         }
 
