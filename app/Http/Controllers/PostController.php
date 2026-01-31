@@ -108,7 +108,7 @@ class PostController extends Controller
             'code'      => 200,
             'message'   => 'Post updated successfully.',
             'data'      => new PostResource($post),
-        ]);
+        ], 200);
     }
 
     /**
